@@ -45,6 +45,7 @@ namespace Tasky.Screens {
 			context.Fetch (); // re-populates with updated values
 			currentTask.Name = taskDialog.Name;
 			currentTask.Notes = taskDialog.Notes;
+			currentTask.Done = taskDialog.Done;
 			TaskManager.SaveTask(currentTask);
 			NavigationController.PopViewControllerAnimated (true);
 			context.Dispose (); // per documentation
@@ -70,7 +71,7 @@ namespace Tasky.Screens {
 			Root = new RootElement("Tasky") {
 				new Section() {
 					from t in tasks
-					select (Element) new StringElement((t.Name==""?"<new task>":t.Name), t.Notes)
+					select (Element) new CheckboxElement((t.Name==""?"<new task>":t.Name), t.Done)
 				}
 			}; 
 		}
